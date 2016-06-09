@@ -1,0 +1,17 @@
+{
+  "name" : "MEAN",
+  "version" : "0.0.3",
+  "dependencies" : {
+    "express" : "*",
+    "morgan" : "*",
+    "compression" : "*",
+    "body-parser" : "*",
+    "method-override" : "*",
+    "express-session" : "*",
+    "ejs" : "*",
+    "mongoose" : "*",
+    "passport" : "*",
+    "passport-local" : "*",
+    "connect-flash": "*"
+  }
+}
