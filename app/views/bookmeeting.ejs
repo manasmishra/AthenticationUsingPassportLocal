@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-   <html>
-     <head>
-         <title><%= title %></title>
-       </head>
-       <body>
-           <h1>Manas</h1>
-         <% if ( userFullName ) { %>
-           <h2>Hello <%=userFullName%> </h2>
+<html>
+    <head>
+        <title><%= title %></title>
+    </head>
+    <body>
+        <% if ( userFullName ) { %>
+            Hello <%=userFullName%>, You can book your meeting here for any futuredate:
+           <form action="/bookmeeting" method="post">
+               Select Start Date of Meeting:<input type="date" name="dateOfMeeting" min=Date()/><br>
+               Enter Start Time of Meeting:<input type="time" name="timeOfMeeting"/><br>
+               Enter Duration of Meeting in Minutes:<input type="text" name="durationOfMeeting"><br>
+               Enter a Subject Line for Meeting:<input type="text" name="subjectOfMeeting">
+               <div>
+                   <input type="submit" value="Book Meeting" />
+               </div>
+           </form>
            <a href="/signout">Sign out</a>
          <% } else { %>
            <a href="/signup">Signup</a>
            <a href="/signin">Signin</a>
-<% } %>
-       <br>
-         <img src="img/logo.png" alt="Logo">
-       </body>
-   </html>
+           <% } %>
+    </body>
+</html>

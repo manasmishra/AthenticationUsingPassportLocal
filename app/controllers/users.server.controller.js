@@ -1,5 +1,6 @@
 var User = require('mongoose').model('User');
 var passport = require('passport');
+var http = require('http');
 var getErrorMessage = function (err) {
   var message = '';
   if (err.code) {
@@ -38,13 +39,45 @@ exports.bookmeeting = function (req, res, next) {
         messages: req.flash('error') || req.flash('info'),
       });
   } else {
-    console.log('Inside bookmeeting');
     res.render('bookmeeting', {
           title: 'Book Meeting Form',
           userFullName: req.user ? req.user.fullName : '',
           messages: req.flash('error') || req.flash('info'),
         });
   } };
+
+var count = (function () {
+  var seq = 0;
+  return function () { return seq += 1; };
+})();
+
+exports.validatebookmeeting = function (req, res, next) {
+  if (req) {
+    var calendarJSON = {};
+    var d = new Date();
+    calendarJSON.calendarId = d.getYear().toString() + d.getMonth().toString();
+    calendarJSON.calendarId += d.getDate().toString() + count();
+    calendarJSON.StartDate = req.body.dateOfMeeting;
+    calendarJSON.StartTime = req.body.timeOfMeeting;
+    calendarJSON.Duration = req.body.durationOfMeeting;
+    calendarJSON.subject = req.body.subjectOfMeeting;
+    /*var optionsCalenderID = {
+      host: 'http://,meetingserver.com',
+      port: 80,
+      path: '/calendarId',
+      method: 'post',
+      headers: { Accept: 'application/json' },
+      body: calendarJSON,
+    };
+    http.request(optionsCalenderID, function (response) {
+      if (response.statusCode === 200) {
+        res.send('Meeting Booked');
+      } else {
+        res.send('Meeting Not Booked');
+      }
+  });*/
+  }
+};
 
 exports.renderSignup = function (req, res, next) {
   if (!req.user) {

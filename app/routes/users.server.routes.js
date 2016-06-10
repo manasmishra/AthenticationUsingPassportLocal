@@ -1,5 +1,5 @@
-var users = require('../../app/controllers/users.server.controller'),
-       passport = require('passport');
+var users = require('../../app/controllers/users.server.controller');
+var passport = require('passport');
 module.exports = function (app) {
      app.route('/signup')
         .get(users.renderSignup)
@@ -12,5 +12,7 @@ module.exports = function (app) {
           failureFlash: true,
         }));
      app.get('/bookmeeting', users.bookmeeting);
+     app.post('/bookmeeting', users.validatebookmeeting);
+     app.post('/calendarId', users.bookCalendarId);
      app.get('/signout', users.signout);
    };
