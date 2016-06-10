@@ -13,6 +13,5 @@ module.exports = function (app) {
         }));
      app.get('/bookmeeting', users.bookmeeting);
      app.post('/bookmeeting', users.validatebookmeeting);
-     app.post('/calendarId', users.bookCalendarId);
      app.get('/signout', users.signout);
    };

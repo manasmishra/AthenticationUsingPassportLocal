@@ -61,9 +61,9 @@ exports.validatebookmeeting = function (req, res, next) {
     calendarJSON.StartTime = req.body.timeOfMeeting;
     calendarJSON.Duration = req.body.durationOfMeeting;
     calendarJSON.subject = req.body.subjectOfMeeting;
-    /*var optionsCalenderID = {
-      host: 'http://,meetingserver.com',
-      port: 80,
+    var optionsCalenderID = {
+      host: 'http://localhost',
+      port: 5000,
       path: '/calendarId',
       method: 'post',
       headers: { Accept: 'application/json' },
@@ -75,7 +75,7 @@ exports.validatebookmeeting = function (req, res, next) {
       } else {
         res.send('Meeting Not Booked');
       }
-  });*/
+    });
   }
 };
 
